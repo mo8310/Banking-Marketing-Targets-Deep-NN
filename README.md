@@ -141,19 +141,3 @@ Run the notebook top to bottom:
 3. Run preprocessing (encoding + scaling)
 4. Build and train the model
 5. Review the evaluation cells (metrics, confusion matrix, ROC curve) at the end
-
-## Limitations
-
-- Single train/val split, no k-fold cross-validation
-- No hyperparameter search — layer sizes, dropout rate and batch size were set manually
-- Precision on the `yes` class is low (0.36); usable for ranking/prioritizing clients to call, not as a hard yes/no filter
-- Categorical features are label-encoded rather than one-hot encoded or embedded, which imposes an artificial ordinal relationship on nominal categories
-- No model export/serialization step — the trained model isn't saved for reuse outside the notebook
-
-## Future Improvements
-
-- Try one-hot encoding or entity embeddings for categorical features instead of label encoding
-- Add cross-validation and a proper hyperparameter search
-- Compare against simpler baselines (logistic regression, gradient boosting) to see if the NN is actually worth the added complexity
-- Save the trained model and scaler/encoders for inference outside the notebook
-- Tune the decision threshold instead of using the default 0.5, given the precision/recall trade-off in the results
